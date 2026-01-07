@@ -8,11 +8,13 @@ By utilizing a **Gated Fusion** mechanism, the model dynamically weighs visual f
 
 ---
 
-### 🖼️ Satellite Imagery Pipeline
+## 🖼️ Satellite Imagery Pipeline
 The "Visual Branch" of our model processes high-resolution aerial imagery:
 - **API:** Esri World Imagery (MapServer/tile).
 - **Processing:** Images are fetched via a REST API, converted from WGS84 coordinates to tile coordinates, and normalized for ResNet18.
 - **Visual Features:** The model extracts spatial patterns including rooftop area, backyard greenery density, and neighborhood layout.
+
+---
 
 ## 🏗️ Model Architecture
 Our architecture utilizes a **Late Fusion** approach with a learned **Scalar Gating Unit**. This allows the model to prioritize either visual or tabular features depending on the specific property context.
@@ -47,7 +49,7 @@ graph TD
     style I fill:#f9f,stroke:#333,stroke-width:2px
     style J fill:#f9f,stroke:#333,stroke-width:2px
     style K fill:#fff4dd,stroke:#d4a017,stroke-width:2px
-
+```
 ---
 
 ## 📊 Performance Results
