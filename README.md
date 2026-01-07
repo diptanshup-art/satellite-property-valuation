@@ -14,6 +14,40 @@ The "Visual Branch" of our model processes high-resolution aerial imagery:
 - **Processing:** Images are fetched via a REST API, converted from WGS84 coordinates to tile coordinates, and normalized for ResNet18.
 - **Visual Features:** The model extracts spatial patterns including rooftop area, backyard greenery density, and neighborhood layout.
 
+## 🏗️ Model Architecture
+Our architecture utilizes a **Late Fusion** approach with a learned **Scalar Gating Unit**. This allows the model to prioritize either visual or tabular features depending on the specific property context.
+
+```mermaid
+graph TD
+    %% Inputs
+    A[Satellite Image 224x224] --> B[CNN Branch: ResNet18]
+    C[Tabular Data Features] --> D[MLP Branch: Linear+ReLU]
+
+    %% Feature Extraction
+    B --> E[Image Features 512]
+    D --> F[Tabular Features 128]
+
+    %% Fusion Logic
+    E & F --> G{torch.cat}
+    G --> H[Combined Vector 640]
+
+    %% Gating Mechanism
+    H --> I[Gate Unit: Linear + Sigmoid]
+    I --> J[Gating Weight g]
+    
+    %% Application
+    H --> K{Element-wise Multiply}
+    J --> K
+    
+    %% Final Output
+    K --> L[Regressor: MLP]
+    L --> M[Predicted House Price]
+
+    %% Styling for the unique Gating Logic
+    style I fill:#f9f,stroke:#333,stroke-width:2px
+    style J fill:#f9f,stroke:#333,stroke-width:2px
+    style K fill:#fff4dd,stroke:#d4a017,stroke-width:2px
+
 ## 📊 Performance Results
 The model was trained and evaluated on the King County Housing Dataset. Our multimodal approach successfully outperformed traditional machine learning baselines.
 
