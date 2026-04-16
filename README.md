@@ -76,8 +76,8 @@ To run the notebooks, organize your files as follows:
 ├── src/
 │   └── data_fetcher.py      # Esri Tile fetching & Greenery Scoring
 ├── notebooks/
-│   ├── preprocessing.ipynb  # Data cleaning, log-transforms, & K-Means clustering
-│   ├── baseline_models.ipynb # XGBoost and Tabular MLP benchmarks
-│   └── model_training.ipynb # Gated Fusion training (PyTorch)
+│   ├── preprocessing.py  # Data cleaning, log-transforms, & K-Means clustering
+│   ├── baseline_models.py # XGBoost and Tabular MLP benchmarks
+│   └── model_training.py # Gated Fusion training (PyTorch)
 ├── requirements.txt         # Project dependencies
 └── README.md                # Project documentation
